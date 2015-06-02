@@ -4,7 +4,7 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-        <navigation-rule>
+    <navigation-rule>
         <from-view-id>index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>falha</from-outcome>
@@ -16,7 +16,7 @@
         </navigation-case>
     </navigation-rule>
     
-            <navigation-rule>
+    <navigation-rule>
         <from-view-id>/*</from-view-id>
         <navigation-case>
             <from-outcome>sair</from-outcome>
@@ -24,7 +24,7 @@
         </navigation-case>
     </navigation-rule>
     
-        <lifecycle>
+<!--    <lifecycle>
         <phase-listener>Listener.AutorizaListener</phase-listener>
-    </lifecycle>
+    </lifecycle>-->
 </faces-config>
