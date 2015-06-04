@@ -12,7 +12,7 @@ public class AutorizaListener implements PhaseListener{
 
     @Override
     public void afterPhase(PhaseEvent event) {
-        System.out.println("passei aqui!");
+ 
         FacesContext contexto = event.getFacesContext();
         String paginaAtual = contexto.getViewRoot().getViewId();
         boolean isLoginPage = paginaAtual.lastIndexOf("index.xhtml") > -1;
@@ -24,7 +24,7 @@ public class AutorizaListener implements PhaseListener{
         if(!isLoginPage && !sessao.getAutenticado())
         {
             NavigationHandler nh = contexto.getApplication().getNavigationHandler();
-            sessao.setStrLogin(null);
+            sessao.setObjUser(null);
             nh.handleNavigation(contexto, null, "sair");
         }
         else if(isLoginPage && sessao.getAutenticado())

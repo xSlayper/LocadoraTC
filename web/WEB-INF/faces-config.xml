@@ -12,7 +12,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>sucesso</from-outcome>
-            <to-view-id>/Menu.xhtml</to-view-id>
+            <to-view-id>/menu.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -24,7 +24,7 @@
         </navigation-case>
     </navigation-rule>
     
-<!--    <lifecycle>
+    <lifecycle>
         <phase-listener>Listener.AutorizaListener</phase-listener>
-    </lifecycle>-->
+    </lifecycle>
 </faces-config>

@@ -5,20 +5,23 @@
  */
 package myBeans;
 
+import DataAcessLayer.daoUsuario;
+import Entity.entUsuario;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Dev
  */
 @ManagedBean(name="autenticacao")
-@RequestScoped
+@SessionScoped
 public class loginBean {
     
     private String strLogin;
     private String strSenha;
     private Boolean autenticado;
+    private entUsuario objUser;
 
     public loginBean() {
         autenticado = false;
@@ -46,10 +49,46 @@ public class loginBean {
     public void setAutenticado(Boolean autenticado) {
         this.autenticado = autenticado;
     }
+
+    public entUsuario getObjUser() {
+        return objUser;
+    }
+
+    public void setObjUser(entUsuario objUser) {
+        this.objUser = objUser;
+    }
+    
     public String validaUsuario()
     {
+        daoUsuario dal = new daoUsuario();
+        this.objUser = dal.getUser(strLogin, strSenha);
         
+        System.out.println("autenticado? " + this.autenticado);
+        
+        if(this.objUser.getIntChave() > 0)
+        {
+            System.out.println("Autenticou!!!");
+        this.autenticado = true;
         return "sucesso";
+        }
+        else
+        {
+             System.out.println("Não Autenticou!!!");
+            return "falha";        
+        }
+  
+        
+    }
+    
+    
+    public String logoff()
+    {
+        this.objUser = null;
+        this.strLogin = null;
+        this.strSenha = null;
+        this.autenticado = false;
+        
+        return "sair";
     }
     
 }
