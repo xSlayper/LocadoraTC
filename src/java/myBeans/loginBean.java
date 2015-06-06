@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package myBeans;
 
 import DataAcessLayer.daoUsuario;
@@ -10,10 +5,6 @@ import Entity.entUsuario;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author Dev
- */
 @ManagedBean(name="autenticacao")
 @SessionScoped
 public class loginBean {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataAcessLayer;
 
 import Entity.entUsuario;
@@ -12,10 +7,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Dev
- */
 public class daoUsuario {
     
     public entUsuario getUser(String userName, String Password)
