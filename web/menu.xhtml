@@ -7,7 +7,8 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     
     <ui:define name="top">
-            <h1>Menu</h1>
+        <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-default btn-lg" style="float: right; margin-right: 2%;" />
+        <h1>Menu</h1>            
     </ui:define>
 
     <ui:define name="content">
@@ -23,7 +24,7 @@
                             
                                 <div class="container-fluid">
                                     <div class="row">
-                                            <h:commandButton value="Novo" action="index.xhtml" class="btn btn-primary btn-lg btn-block" /><br/>
+                                            <h:commandButton value="Novo" action="novoAluguel.xhtml" class="btn btn-primary btn-lg btn-block" /><br/>
                                             <h:commandButton value="Listar" action="index.xhtml" class="btn btn-primary btn-lg btn-block" /><br/>
                                     </div>
                                 </div>                                
@@ -65,8 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-success btn-lg btn-block" /><br/>        
+            </div>                    
         </div>
     </ui:define>
 

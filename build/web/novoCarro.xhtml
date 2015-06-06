@@ -6,8 +6,9 @@
                 xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:f="http://java.sun.com/jsf/core">
     
-    <ui:define name="top">      
-            <h1>Novo Carro</h1>
+    <ui:define name="top">
+        <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-default btn-lg" style="float: right; margin-right: 2%;" />
+        <h1>Novo Carro</h1>
     </ui:define>
 
     <ui:define name="content">
@@ -33,6 +34,12 @@
                                         <div class="form-group">
                                             <h:outputLabel value="Ano" /><h:message for="ano" class="mensagem" />
                                             <h:inputText id="ano" value=" " class="form-control" required="false" requiredMessage=" obrigatório" />                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Placa" /><h:message for="placa" class="mensagem" />
+                                            <h:inputText id="placa" value=" " class="form-control" required="false" requiredMessage=" obrigatório" />                                            
                                         </div>
                                     </div>
 
