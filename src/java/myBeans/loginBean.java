@@ -60,6 +60,8 @@ public class loginBean {
     
     public String validaUsuario()
     {
+        if(this.autenticado == false)
+        {
         daoUsuario dal = new daoUsuario();
         this.objUser = dal.getUser(strLogin, strSenha);
         
@@ -77,7 +79,9 @@ public class loginBean {
             return "falha";        
         }
   
-        
+        }
+        else
+        return "sucesso";
     }
     
     
