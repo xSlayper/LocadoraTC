@@ -18,7 +18,8 @@ public class daoUsuario {
             Conexao.Conectar();
             System.out.println("Conexao Aberta!");
             Statement stmt = Conexao.conn.createStatement();
-            String strQuery = "SELECT intChave, strUsuario, strSenha, strNome, intCargo FROM tblUsuario WHERE strUsuario = '%s' AND strSenha = '%s'";
+//            String strQuery = "SELECT intChave, strUsuario, strSenha, strNome, intCargo FROM tblUsuario WHERE strUsuario = '%s' AND strSenha = '%s'";
+            String strQuery = "SELECT intChave, strUsuario, strSenha, strNome, intCargo FROM tblusuario WHERE strUsuario = '%s' AND strSenha = '%s'";
            stmt.executeQuery(String.format(strQuery, userName, Password));
             System.out.println(String.format(strQuery, userName, Password));
             ResultSet rs = stmt.getResultSet();

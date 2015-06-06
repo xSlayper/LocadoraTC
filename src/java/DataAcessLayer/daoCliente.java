@@ -24,7 +24,8 @@ public class daoCliente {
                 objClient.setIntChave(rs.getInt(1) + 1);
             }
             System.out.println("Inserindo Cliente!");
-            String strQuery = "INSERT INTO tblCliente (intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida) Values ('%d','%s','%s','%s','%s','%s','%s') ";
+//            String strQuery = "INSERT INTO tblCliente (intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida) Values ('%d','%s','%s','%s','%s','%s','%s') ";
+            String strQuery = "INSERT INTO tblcliente (intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida) Values ('%d','%s','%s','%s','%s','%s','%s') ";
                         System.out.println(String.format(String.format(strQuery, objClient.getIntChave(), objClient.getStrNome(), objClient.getStrCPF(), objClient.getStrEndereco(), objClient.getStrTelefone(), objClient.getStrEmail(), objClient.getDblDivida())));
             stmt.execute(String.format(strQuery, objClient.getIntChave(), objClient.getStrNome(), objClient.getStrCPF(), objClient.getStrEndereco(), objClient.getStrTelefone(), objClient.getStrEmail(), Double.toString(objClient.getDblDivida()).replace(",", ".s")));
 

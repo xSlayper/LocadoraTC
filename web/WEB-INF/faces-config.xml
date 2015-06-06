@@ -24,7 +24,7 @@
         </navigation-case>
     </navigation-rule>
     
-    <lifecycle>
+<!--    <lifecycle>
         <phase-listener>Listener.AutorizaListener</phase-listener>
-    </lifecycle>
+    </lifecycle>-->
 </faces-config>
