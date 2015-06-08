@@ -4,6 +4,8 @@ import Entity.entCliente;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,4 +42,39 @@ public class daoCliente {
         
     }
     
+    
+     public List<entCliente> getClientes()
+    {
+            List<entCliente> listaClientes = new ArrayList<>();
+        try {
+            Conexao.Conectar();
+            System.out.println("Gerando intChave");
+            Statement stmt = Conexao.conn.createStatement();
+            stmt.executeQuery("SELECT intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida FROM tblCliente");
+            ResultSet rs = stmt.getResultSet();
+            
+            entCliente objCliente;
+             while(rs.next())
+            {   
+                objCliente = new entCliente();
+                objCliente.setIntChave(rs.getInt("intChave"));
+                objCliente.setStrNome(rs.getString("strNome"));
+                objCliente.setStrCPF(rs.getString("strCPF"));
+                objCliente.setStrEndereco(rs.getString("strEndereco"));
+                objCliente.setStrTelefone(rs.getString("strTelefone"));
+                objCliente.setStrEmail(rs.getString("strEmail"));
+                objCliente.setDblDivida(rs.getDouble("dblDivida"));
+                listaClientes.add(objCliente);
+            }
+
+            Conexao.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            
+        }
+        return listaClientes;
+    }
 }

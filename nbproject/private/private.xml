@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/menu.xhtml</file>
-            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/modelo.xhtml</file>
-            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/novoCarro.xhtml</file>
-            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/novoAluguel.xhtml</file>
+            <file>file:/D:/Desenvolvimento/Projetos/Faculdade/LocadoraTC/LocadoraTC/src/java/Servlet/DisplayPhotoServlet.java</file>
+            <file>file:/D:/Desenvolvimento/Projetos/Faculdade/LocadoraTC/LocadoraTC/src/java/DataAcessLayer/daoCarro.java</file>
+            <file>file:/D:/Desenvolvimento/Projetos/Faculdade/LocadoraTC/LocadoraTC/web/modelo.xhtml</file>
+            <file>file:/D:/Desenvolvimento/Projetos/Faculdade/LocadoraTC/LocadoraTC/src/java/Entity/entCarro.java</file>
+            <file>file:/D:/Desenvolvimento/Projetos/Faculdade/LocadoraTC/LocadoraTC/web/novoCarro.xhtml</file>
+            <file>file:/D:/Desenvolvimento/Projetos/Faculdade/LocadoraTC/LocadoraTC/src/java/myBeans/carroBean.java</file>
+            <file>file:/D:/Desenvolvimento/Projetos/Faculdade/LocadoraTC/LocadoraTC/web/menu.xhtml</file>
         </group>
     </open-files>
 </project-private>

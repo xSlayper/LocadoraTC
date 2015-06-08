@@ -22,9 +22,13 @@
             <from-outcome>sair</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
+                <navigation-case>
+            <from-outcome>listarClientes</from-outcome>
+            <to-view-id>/listarCliente.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
-<!--    <lifecycle>
+    <lifecycle>
         <phase-listener>Listener.AutorizaListener</phase-listener>
-    </lifecycle>-->
+    </lifecycle>
 </faces-config>

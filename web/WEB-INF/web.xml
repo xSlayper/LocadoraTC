@@ -13,6 +13,14 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+       <servlet>
+        <servlet-name>DisplayPhotoServlet</servlet-name>
+        <servlet-class>DisplayPhotoServlet</servlet-class>
+    </servlet>
+  <servlet-mapping>
+        <servlet-name>DisplayPhotoServlet</servlet-name>
+        <url-pattern>/displayphoto</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

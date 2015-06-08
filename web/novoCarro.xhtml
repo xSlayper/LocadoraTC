@@ -5,7 +5,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml" 
                 xmlns:f="http://java.sun.com/jsf/core">
-    
+
     <ui:define name="top">
         <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-default btn-lg" style="float: right; margin-right: 2%;" />
         <h1>Novo Carro</h1>
@@ -17,38 +17,52 @@
                 <div class="col-sm-offset-4 col-sm-4">
                     <div class="panel panel-default">
                         <div class="panel-body">            
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <h:outputLabel value="Modelo" /><h:message for="modelo" class="mensagem" />
-                                            <h:inputText id="modelo" value=" " class="form-control" required="false" requiredMessage=" obrigatório" />                                            
-                                        </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Marca" /><h:message for="marca" class="mensagem" />
+                                        <h:inputText id="marca" value="#{CarroHdl.objCarro.strMarca}" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <h:outputLabel value="Marca" /><h:message for="marca" class="mensagem" />
-                                            <h:inputText id="marca" value=" " class="form-control" required="false" requiredMessage=" obrigatório" />                                            
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Modelo" /><h:message for="modelo" class="mensagem" />
+                                        <h:inputText id="modelo" value="#{CarroHdl.objCarro.strModelo}" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <h:outputLabel value="Ano" /><h:message for="ano" class="mensagem" />
-                                            <h:inputText id="ano" value=" " class="form-control" required="false" requiredMessage=" obrigatório" />                                            
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Ano" /><h:message for="ano" class="mensagem" />
+                                        <h:inputText id="ano" value="#{CarroHdl.objCarro.intAno}" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <h:outputLabel value="Placa" /><h:message for="placa" class="mensagem" />
-                                            <h:inputText id="placa" value=" " class="form-control" required="false" requiredMessage=" obrigatório" />                                            
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Placa" /><h:message for="placa" class="mensagem" />
+                                        <h:inputText id="placa" value="#{CarroHdl.objCarro.strPlaca}" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Diária" /><h:message for="diaria" class="mensagem" />
+                                        <h:inputText id="diaria" value="#{CarroHdl.objCarro.dblDiaria}" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
 
-                                    <div class="row">
-                                        <!--<h:commandButton value="Logar" action="sucesso" class="btn btn-primary btn-lg btn-block" />-->
-                                        <h:commandButton value="Cadastrar" action="menu.xhtml" class="btn btn-primary btn-lg btn-block" />
-                                        <h:commandButton value="Cancelar" action="menu.xhtml" class="btn btn-default btn-lg btn-block" />
+                                        <h:outputLabel value="Foto" /><h:message for="foto" class="mensagem" />                          
+                                        <h:inputFile id="ifFoto" value="#{CarroHdl.file}" validator="#{CarroHdl.validateFile}"/>
+                                        <!--<img width='300' height='400' src="displayphoto?id=1"></img>-->                        
                                     </div>
-                                </div>               
+                                </div>
+
+                                <div class="row">
+                                    <!--<h:commandButton value="Logar" action="sucesso" class="btn btn-primary btn-lg btn-block" />-->
+                                    <h:commandButton value="Cadastrar" action="#{CarroHdl.cadastrarCarro()}" class="btn btn-primary btn-lg btn-block" />
+                                    <h:commandButton value="Cancelar" action="menu.xhtml" class="btn btn-default btn-lg btn-block" />
+                                </div>
+                            </div>               
                         </div>
                     </div>
                 </div>
