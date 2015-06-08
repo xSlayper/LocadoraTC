@@ -21,25 +21,33 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Cliente" /><h:message for="cliente" class="mensagem" />
-                                            <h:inputText id="cliente" value="mudar para combo box" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
+                                            <h:selectOneMenu id="cliente" class="form-control" required="false" requiredMessage=" obrigatório">
+                                                <f:selectItem itemValue="1" itemLabel="clientes do banco de dados" />
+                                                <f:selectItem itemValue="2" itemLabel="fulano" />
+                                                <f:selectItem itemValue="3" itemLabel="beltrano" />
+                                            </h:selectOneMenu>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Carro" /><h:message for="carro" class="mensagem" />
-                                            <h:inputText id="carro" value="mudar para combo box" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
+                                            <h:selectOneMenu id="carro" class="form-control" required="false" requiredMessage=" obrigatório">
+                                                <f:selectItem itemValue="1" itemLabel="carros do banco de dados" />
+                                                <f:selectItem itemValue="2" itemLabel="mercedes" />
+                                                <f:selectItem itemValue="3" itemLabel="ferrari" />
+                                            </h:selectOneMenu>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <h:outputLabel value="Período" /><h:message for="período" class="mensagem" />
-                                            <h:inputText id="período" value="mudar para combo box" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
+                                            <h:outputLabel value="Dias" /><h:message for="dias" class="mensagem" />
+                                            <h:inputText id="dias" value="0" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <h:outputLabel value="Valor" /><h:message for="valor" class="mensagem" />
-                                            <h:inputText id="valor" value="mudar para cálculo automático" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
+                                            <h:outputLabel value="Valor" />
+                                            <h:outputText id="valor" class="form-control" value="invocar método que calcula valor total" />
                                         </div>
                                     </div>
 

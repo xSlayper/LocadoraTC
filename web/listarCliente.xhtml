@@ -7,54 +7,83 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="top">
-        <h1>Listar Clientes</h1>
+        <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-default btn-lg" style="float: right; margin-right: 2%;" />
+        <h1>Lista de Clientes</h1>        
     </ui:define>
 
     <ui:define name="content">
-        <h:dataTable value="#{ClienteHdl.listaCliente}" var="objeto" border="1">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputLabel value="ID"/>
-                </f:facet>
-                <h:outputText value="#{objeto.intChave}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputLabel value="Nome"/>
-                </f:facet>
-                <h:outputText value="#{objeto.strNome}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputLabel value="Email"/>
-                </f:facet>
-                <h:outputText value="#{objeto.strEmail}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputLabel value="CPF"/>
-                </f:facet>
-                <h:outputText value="#{objeto.strCPF}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputLabel value="Telefone"/>
-                </f:facet>
-                <h:outputText value="#{objeto.strTelefone}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputLabel value="Endereço"/>
-                </f:facet>
-                <h:outputText value="#{objeto.strEndereco}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputLabel value="Dívida"/>
-                </f:facet>
-                <h:outputText value="#{objeto.dblDivida}"/>
-            </h:column>
-        </h:dataTable>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <h:dataTable value="#{ClienteHdl.listaCliente}" var="objeto" class="table table-striped" >
+<!--                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.intChave}"/>
+                                        </h:column>-->
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Nome"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.strNome}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Email"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.strEmail}"/>
+                                        </h:column>
+<!--                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="CPF"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.strCPF}"/>
+                                        </h:column>-->
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Telefone"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.strTelefone}"/>
+                                        </h:column>
+<!--                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Endereço"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.strEndereco}"/>
+                                        </h:column>-->
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Dívida"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.dblDivida}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Opções"/>
+                                            </f:facet>
+                                            <h:commandButton value="Editar" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <h:commandButton value="Apagar" class="btn btn-sm btn-danger" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>                                
+
+                                <div class="row">
+                                    <div class="col-sm-offset-4 col-sm-4">
+                                        <h:commandButton value="Voltar" action="menu.xhtml" class="btn btn-primary btn-lg btn-block" />
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>

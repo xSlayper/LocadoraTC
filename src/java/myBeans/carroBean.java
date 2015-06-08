@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package myBeans;
 
 import DataAcessLayer.daoCarro;
@@ -21,13 +16,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 import javax.servlet.http.Part;
 
-/**
- *
- * @author Netinho
- */
 @ManagedBean(name = "CarroHdl")
 @RequestScoped
 public class carroBean {
