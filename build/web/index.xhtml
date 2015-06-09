@@ -20,21 +20,17 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Login" /><h:message for="login" class="mensagem" />
-                                            <h:inputText id="login" value="#{autenticacao.strLogin}" class="form-control" required="false" requiredMessage=" obrigatório" />
-                                            <!--<h:inputText id="login" class="form-control" required="false" requiredMessage=" obrigatório" />-->
-                                            
+                                            <h:inputText id="login" value="#{autenticacao.strLogin}" class="form-control" required="true" requiredMessage=" obrigatório" />                                            
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Senha" /><h:message for="senha" class="mensagem" />
-                                            <h:inputText id="senha" value="#{autenticacao.strSenha}" class="form-control" required="false" requiredMessage=" obrigatória" />
-                                            <!--<h:inputSecret  id="senha" class="form-control" required="false" requiredMessage=" obrigatória" />-->
+                                            <h:inputText id="senha" value="#{autenticacao.strSenha}" class="form-control" required="true" requiredMessage=" obrigatória" />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <h:commandButton value="Logar" action="#{autenticacao.validaUsuario()}" class="btn btn-primary btn-lg btn-block" />
-                                        <!--<h:commandButton value="Logar" action="menu.xhtml" class="btn btn-primary btn-lg btn-block" />-->
                                     </div>
                                 </div>
                         </div>
