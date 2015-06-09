@@ -30,3 +30,13 @@ CREATE TABLE `locadora`.`tblcarro` (
   `dblDiaria` DOUBLE NULL,
   `btFoto` MEDIUMBLOB NULL,
   PRIMARY KEY (`intChave`));
+
+
+CREATE TABLE `locadora`.`tblaluguel` (
+  `intChave` INT NOT NULL,
+  `intChaveCliente` INT NULL,
+  `intChaveCarro` INT NULL,
+  `intDias` INT NULL,
+  `dblValorTotal` DOUBLE NULL,
+  `intChavePagamento` INT NULL,
+  PRIMARY KEY (`intChave`));

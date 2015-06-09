@@ -21,39 +21,41 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Cliente" /><h:message for="cliente" class="mensagem" />
-                                            <h:selectOneMenu id="cliente" class="form-control" required="false" requiredMessage=" obrigatório">
-                                                <f:selectItem itemValue="1" itemLabel="clientes do banco de dados" />
-                                                <f:selectItem itemValue="2" itemLabel="fulano" />
-                                                <f:selectItem itemValue="3" itemLabel="beltrano" />
+                                            <h:selectOneMenu id="cliente" value="#{aluguelCarroHdl.intChavePessoa}" class="form-control" required="false" requiredMessage=" obrigatório">
+                                                <f:selectItems value="#{aluguelCarroHdl.listaCliente}" var="cliente" itemValue="#{cliente.intChave}" itemLabel="#{cliente.strNome}" />                                    
+                                                <f:ajax listener="#{aluguelCarroHdl.postCliente}"/>
                                             </h:selectOneMenu>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Carro" /><h:message for="carro" class="mensagem" />
-                                            <h:selectOneMenu id="carro" class="form-control" required="false" requiredMessage=" obrigatório">
-                                                <f:selectItem itemValue="1" itemLabel="carros do banco de dados" />
-                                                <f:selectItem itemValue="2" itemLabel="mercedes" />
-                                                <f:selectItem itemValue="3" itemLabel="ferrari" />
+                                            <h:selectOneMenu id="carro" value="#{aluguelCarroHdl.intChaveCarro}" class="form-control" required="false" requiredMessage=" obrigatório">
+                                                <f:selectItems value="#{aluguelCarroHdl.listaCarros}" var="carros" itemValue="#{carros.intChave}" itemLabel="#{carros.strMarca} - #{carros.strModelo}" />                                              
+                                                <f:ajax listener="#{aluguelCarroHdl.postCarro}"/>
                                             </h:selectOneMenu>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Dias" /><h:message for="dias" class="mensagem" />
-                                            <h:inputText id="dias" value="0" class="form-control" required="false" requiredMessage=" obrigatório" />                                            
+                                            <h:inputText id="dias" value="#{aluguelCarroHdl.intDias}"  class="form-control" required="false" requiredMessage=" obrigatório" >    
+                                                <f:ajax listener="#{aluguelCarroHdl.calculateDiaria}" render="valor" />
+                                            </h:inputText>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
                                             <h:outputLabel value="Valor" />
-                                            <h:outputText id="valor" class="form-control" value="invocar método que calcula valor total" />
+                                            <h:outputText id="valor" class="form-control" value="#{aluguelCarroHdl.dblValorAluguel}" />
+                                                
+                                            
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <!--<h:commandButton value="Logar" action="sucesso" class="btn btn-primary btn-lg btn-block" />-->
-                                        <h:commandButton value="Cadastrar" action="menu.xhtml" class="btn btn-primary btn-lg btn-block" />
+                                        <h:commandButton value="Cadastrar" action="#{aluguelCarroHdl.registrarAluguel()}" class="btn btn-primary btn-lg btn-block" />
                                         <h:commandButton value="Cancelar" action="menu.xhtml" class="btn btn-default btn-lg btn-block" />
                                     </div>
                                 </div>               

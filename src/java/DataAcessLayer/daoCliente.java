@@ -48,11 +48,11 @@ public class daoCliente {
             List<entCliente> listaClientes = new ArrayList<>();
         try {
             Conexao.Conectar();
-            System.out.println("Gerando intChave");
+            System.out.println("Coletando clientes!");
             Statement stmt = Conexao.conn.createStatement();
             stmt.executeQuery("SELECT intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida FROM tblCliente");
             ResultSet rs = stmt.getResultSet();
-            
+            System.out.println("Coletei resultSet!");
             entCliente objCliente;
              while(rs.next())
             {   
@@ -66,7 +66,7 @@ public class daoCliente {
                 objCliente.setDblDivida(rs.getDouble("dblDivida"));
                 listaClientes.add(objCliente);
             }
-
+System.out.println("Preenchi a lista!!");
             Conexao.conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);

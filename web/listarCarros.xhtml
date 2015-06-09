@@ -7,11 +7,11 @@
                 xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="top">
-        <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-default btn-lg" style="float: right; margin-right: 2%;" />
-        <h1>Lista de Clientes</h1>        
+                <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-default btn-lg" style="float: right; margin-right: 2%;" />
+        <h1>Carros</h1>  
     </ui:define>
 
-    <ui:define name="content">
+<ui:define name="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-10">
@@ -20,24 +20,24 @@
 
                             <div class="container-fluid">
                                 <div class="row">
-                                    <h:dataTable value="#{ClienteHdl.listaCliente}" var="objeto" class="table table-striped" >
-<!--                                        <h:column>
+                                    <h:dataTable value="#{CarroHdl.listaCarros}" var="objeto" class="table table-striped" >
+                                        <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="ID"/>
                                             </f:facet>
                                             <h:outputText value="#{objeto.intChave}"/>
-                                        </h:column>-->
-                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Nome"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.strNome}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Email"/>
+                                                <h:outputLabel value="Marca"/>
                                             </f:facet>
-                                            <h:outputText value="#{objeto.strEmail}"/>
+                                            <h:outputText value="#{objeto.strMarca}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Modelo"/>
+                                            </f:facet>
+                                            <h:outputText value="#{objeto.strModelo}"/>
                                         </h:column>
 <!--                                        <h:column>
                                             <f:facet name="header">
@@ -47,21 +47,24 @@
                                         </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Telefone"/>
+                                                <h:outputLabel value="Diária"/>
                                             </f:facet>
-                                            <h:outputText value="#{objeto.strTelefone}"/>
+                                            <h:outputText value="#{objeto.dblDiaria}"/>
                                         </h:column>
-<!--                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Endereço"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.strEndereco}"/>
-                                        </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Dívida"/>
+                                                <h:outputLabel value="Placa"/>
                                             </f:facet>
-                                            <h:outputText value="#{objeto.dblDivida}"/>
+                                            <h:outputText value="#{objeto.strPlaca}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputLabel value="Foto"/>
+                                            </f:facet>
+                                            <a href="displayphoto?id=#{objeto.intChave} " target="_blank">
+                                            <img width='80' height='40' src="displayphoto?id=#{objeto.intChave}"></img> 
+                                            </a>
+                                            <!--<h:outputText value="#{objeto.intChave}"/>-->
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">

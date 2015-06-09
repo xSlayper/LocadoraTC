@@ -22,17 +22,27 @@ import javax.servlet.http.Part;
 @ManagedBean(name = "CarroHdl")
 @RequestScoped
 public class carroBean {
-
+    
+    daoCarro dal = new daoCarro();
     private entCarro objCarro;
     private Part file;
     private String fileContent;
 
+    private List<entCarro> listaCarros;
     public carroBean() {
         objCarro = new entCarro();
     }
 
     public entCarro getObjCarro() {
         return objCarro;
+    }
+
+    public List<entCarro> getListaCarros() {
+        return listaCarros;
+    }
+
+    public void setListaCarros(List<entCarro> listaCarros) {
+        this.listaCarros = listaCarros;
     }
 
     public void setObjCarro(entCarro objCarro) {
@@ -60,14 +70,13 @@ public class carroBean {
             this.objCarro.setIsFoto(file.getInputStream());
             this.objCarro.setTamanhoFoto((int)file.getSize());
             
-            daoCarro dal = new daoCarro();
             dal.insertCarro(objCarro);
             //fileContent = new Scanner(file.getInputStream()).useDelimiter("\\A").next();
         } catch (IOException e) {
             // Error handling
         } 
-        return "funcionou";
-    }
+        return "sucesso";
+    }   
 
     public void validateFile(FacesContext ctx, UIComponent comp, Object value) {
 
@@ -83,6 +92,12 @@ public class carroBean {
                 throw new ValidatorException(msgs);
             }
    
+    }
+    
+    public String listarCarros()
+    {
+        this.listaCarros = dal.getAllCarros();
+    return "listarCarros";
     }
 
 }

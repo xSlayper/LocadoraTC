@@ -26,19 +26,20 @@
             <from-outcome>listarClientes</from-outcome>
             <to-view-id>listarCliente.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>listarCliente.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>sair</from-outcome>
-            <to-view-id>index.xhtml</to-view-id>
+                <navigation-case>
+            <from-outcome>listarCarros</from-outcome>
+            <to-view-id>listarCarros.xhtml</to-view-id>
         </navigation-case>
-        <navigation-case>
+                <navigation-case>
             <from-outcome>sucesso</from-outcome>
             <to-view-id>menu.xhtml</to-view-id>
         </navigation-case>
+                        <navigation-case>
+            <from-outcome>novoAlugel</from-outcome>
+            <to-view-id>novoAluguel.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
+    
     
     <lifecycle>
         <phase-listener>Listener.AutorizaListener</phase-listener>
