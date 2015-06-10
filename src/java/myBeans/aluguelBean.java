@@ -5,27 +5,30 @@
  */
 package myBeans;
 
+import DataAcessLayer.daoAluguel;
 import DataAcessLayer.daoCarro;
 import DataAcessLayer.daoCliente;
+import Entity.entAluguel;
 import Entity.entCarro;
 import Entity.entCliente;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
-import javax.servlet.http.Part;
 
 /**
  *
  * @author Netinho
  */
 @ManagedBean(name = "aluguelCarroHdl")
-@RequestScoped
+@ViewScoped
 public class aluguelBean {
 
     daoCarro dalCarro = new daoCarro();
     daoCliente dalCli = new daoCliente();
+    daoAluguel dalAluguel = new daoAluguel();
     private List<entCarro> listaCarros;
     static entCarro CarroSelected;
     private List<entCliente> listaClientes;
@@ -35,7 +38,20 @@ public class aluguelBean {
     private int intDias;
     private int intChaveCarro;
     private int intChavePessoa;
+    
+    
+    private List<entAluguel> listaAlugueis;
 
+    public List<entAluguel> getListaAlugueis() {
+        return listaAlugueis;
+    }
+
+    public void setListaAlugueis(List<entAluguel> listaAlugueis) {
+        this.listaAlugueis = listaAlugueis;
+    }
+
+
+    
     public int getIntChaveCarro() {
         return intChaveCarro;
     }
@@ -102,8 +118,7 @@ public class aluguelBean {
     }
 
     public aluguelBean() {
-        listaCarros = dalCarro.getAllCarros();
-        listaClientes = dalCli.getClientes();
+        
     }
 
     public List<entCarro> getListaCarros() {
@@ -143,22 +158,28 @@ public class aluguelBean {
     }
 
     public String loadAlguel() {
-
-        if(listaCarros.size() > 0)
-        {
-        CarroSelected = listaCarros.get(0);
-        }
-        if(listaClientes.size()>0)
-        {
-        ClienteSelected = listaClientes.get(0);
-        }
         return "novoAlugel";
     }
     
+        @PostConstruct
+    public void init() {
+        listaCarros = dalCarro.getAllCarros();
+        listaClientes = dalCli.getClientes();
+        CarroSelected = listaCarros.get(0);
+        ClienteSelected = listaClientes.get(0);
+        listaAlugueis = dalAluguel.getAlugueis();
+        
+    }
     
     public String registrarAluguel()
     {
-        
+        entAluguel objAluguel = new entAluguel();
+        objAluguel.setIntChaveCarro(intChaveCarro);
+        objAluguel.setIntChaveCliente(intChavePessoa);
+        objAluguel.setIntDias(intDias);
+        objAluguel.setDblValorTotal(dblValorAluguel);
+        objAluguel.setIntChavePagamento(0);
+        dalAluguel.insertAluguel(objAluguel);
         return "sucesso";
     }
 }

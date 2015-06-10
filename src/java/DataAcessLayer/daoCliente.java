@@ -10,9 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class daoCliente {
-    
-    public void insertCliente(entCliente objClient)
-    {
+
+    public void insertCliente(entCliente objClient) {
         System.out.println("Cadastro de Cliente!!");
         try {
             Conexao.Conectar();
@@ -20,31 +19,26 @@ public class daoCliente {
             Statement stmt = Conexao.conn.createStatement();
             stmt.executeQuery("SELECT MAX(intChave) FROM tblCliente");
             ResultSet rs = stmt.getResultSet();
-            
-             while(rs.next())
-            {   
+
+            while (rs.next()) {
                 objClient.setIntChave(rs.getInt(1) + 1);
             }
             System.out.println("Inserindo Cliente!");
 //            String strQuery = "INSERT INTO tblCliente (intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida) Values ('%d','%s','%s','%s','%s','%s','%s') ";
             String strQuery = "INSERT INTO tblcliente (intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida) Values ('%d','%s','%s','%s','%s','%s','%s') ";
-                        System.out.println(String.format(String.format(strQuery, objClient.getIntChave(), objClient.getStrNome(), objClient.getStrCPF(), objClient.getStrEndereco(), objClient.getStrTelefone(), objClient.getStrEmail(), objClient.getDblDivida())));
+            System.out.println(String.format(String.format(strQuery, objClient.getIntChave(), objClient.getStrNome(), objClient.getStrCPF(), objClient.getStrEndereco(), objClient.getStrTelefone(), objClient.getStrEmail(), objClient.getDblDivida())));
             stmt.execute(String.format(strQuery, objClient.getIntChave(), objClient.getStrNome(), objClient.getStrCPF(), objClient.getStrEndereco(), objClient.getStrTelefone(), objClient.getStrEmail(), Double.toString(objClient.getDblDivida()).replace(",", ".s")));
 
             Conexao.conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
         }
-        finally
-        {
-            
-        }
-        
+
     }
-    
-    
-        public void editCliente(entCliente objClient)
-    {
+
+    public void editCliente(entCliente objClient) {
         System.out.println("edição de Cliente!!");
         try {
             Conexao.Conectar();
@@ -52,23 +46,51 @@ public class daoCliente {
 
             System.out.println("Editando Cliente!");
             String strQuery = "UPDATE tblcliente SET strNome = '%s', strCPF = '%s', strEndereco = '%s', strTelefone = '%s', strEmail = '%s', dblDivida = '%s' WHERE intChave = %d ";
-                       
+
             stmt.execute(String.format(strQuery, objClient.getStrNome(), objClient.getStrCPF(), objClient.getStrEndereco(), objClient.getStrTelefone(), objClient.getStrEmail(), Double.toString(objClient.getDblDivida()).replace(",", ".s"), objClient.getIntChave()));
 
             Conexao.conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
         }
-        finally
-        {
-            
-        }
-        
+
     }
-    
-     public List<entCliente> getClientes()
-    {
-            List<entCliente> listaClientes = new ArrayList<>();
+
+    public entCliente getCliente(int intChave) {
+        entCliente Cliente = new entCliente();
+        try {
+            Conexao.Conectar();
+            System.out.println("Coletando clientes!");
+            Statement stmt = Conexao.conn.createStatement();
+            stmt.executeQuery("SELECT intChave, strNome, strCPF, strEndereco, strTelefone, strEmail, dblDivida FROM tblCliente WHERE intChave = " + intChave);
+            ResultSet rs = stmt.getResultSet();
+            System.out.println("Coletei resultSet!");
+
+            while (rs.next()) {
+
+                Cliente.setIntChave(rs.getInt("intChave"));
+                Cliente.setStrNome(rs.getString("strNome"));
+                Cliente.setStrCPF(rs.getString("strCPF"));
+                Cliente.setStrEndereco(rs.getString("strEndereco"));
+                Cliente.setStrTelefone(rs.getString("strTelefone"));
+                Cliente.setStrEmail(rs.getString("strEmail"));
+                Cliente.setDblDivida(rs.getDouble("dblDivida"));
+
+            }
+
+            Conexao.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+        }
+        return Cliente;
+    }
+
+    public List<entCliente> getClientes() {
+        List<entCliente> listaClientes = new ArrayList<>();
         try {
             Conexao.Conectar();
             System.out.println("Coletando clientes!");
@@ -77,8 +99,7 @@ public class daoCliente {
             ResultSet rs = stmt.getResultSet();
             System.out.println("Coletei resultSet!");
             entCliente objCliente;
-             while(rs.next())
-            {   
+            while (rs.next()) {
                 objCliente = new entCliente();
                 objCliente.setIntChave(rs.getInt("intChave"));
                 objCliente.setStrNome(rs.getString("strNome"));
@@ -89,21 +110,18 @@ public class daoCliente {
                 objCliente.setDblDivida(rs.getDouble("dblDivida"));
                 listaClientes.add(objCliente);
             }
-System.out.println("Preenchi a lista!!");
+            System.out.println("Preenchi a lista!!");
             Conexao.conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
-            
+        } finally {
+
         }
         return listaClientes;
     }
-     
-         public void deleteCliente(int intChave)
-    {
-         try {
+
+    public void deleteCliente(int intChave) {
+        try {
             Conexao.Conectar();
             System.out.println("Apagando chave: " + intChave);
             Statement stmt = Conexao.conn.createStatement();

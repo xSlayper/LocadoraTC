@@ -20,7 +20,7 @@
 
                             <div class="container-fluid">
                                 <div class="row">
-                                    <h:dataTable value="#{CarroHdl.listaCarros}" var="objeto" class="table table-striped" >
+                                    <h:dataTable value="#{aluguelCarroHdl.listaAlugueis}" var="objeto" class="table table-striped" >
 <!--                                        <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="ID"/>
@@ -29,56 +29,47 @@
                                         </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Marca"/>
+                                                <h:outputLabel value="Nome Cliente"/>
                                             </f:facet>
-                                            <h:outputText value="#{objeto.strMarca}"/>
+                                            <h:outputText value="#{objeto.strNomeCliente}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Modelo"/>
+                                                <h:outputLabel value="Marca - Modelo"/>
                                             </f:facet>
-                                            <h:outputText value="#{objeto.strModelo}"/>
+                                            <h:outputText value="#{objeto.strMarcaModeloCarro}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Ano"/>
+                                                <h:outputLabel value="Dias"/>
                                             </f:facet>
-                                            <h:outputText value="#{objeto.intAno}"/>
+                                            <h:outputText value="#{objeto.intDias}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Diária"/>
+                                                <h:outputLabel value="Total"/>
                                             </f:facet>
-                                            <h:outputText value="#{objeto.dblDiaria}"/>
+                                            <h:outputText value="#{objeto.dblValorTotal}"/>
                                         </h:column>
-<!--                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Placa"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.strPlaca}"/>
-                                        </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputLabel value="Foto"/>
+                                                <h:outputLabel value="Pago?"/>
                                             </f:facet>
-                                            <a href="displayphoto?id=#{objeto.intChave} " target="_blank">
-                                            <img width='80' height='40' src="displayphoto?id=#{objeto.intChave}"></img> 
-                                            </a>
-                                            <!--<h:outputText value="#{objeto.intChave}"/>-->
+                                            <h:outputText value="#{objeto.strPago}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="Opções"/>
                                             </f:facet>
-                                            <h:commandButton value="Editar" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <h:commandButton value="Apagar" class="btn btn-sm btn-danger" />
+                                            <h:commandButton value="Pagar" class="btn btn-sm btn-success" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <h:commandButton value="Gerar Nota" class="btn btn-sm btn-info" />
                                         </h:column>
                                     </h:dataTable>
                                 </div>                                
 
                                 <div class="row">
                                     <div class="col-sm-offset-4 col-sm-4">
-                                        <h:commandButton value="Voltar" action="menu.xhtml" class="btn btn-primary btn-lg btn-block" />
+                                        <h:commandButton value="Voltar" action="sucesso" class="btn btn-primary btn-lg btn-block" />
                                     </div>                                    
                                 </div>
                             </div>

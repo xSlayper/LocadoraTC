@@ -40,3 +40,9 @@ CREATE TABLE `locadora`.`tblaluguel` (
   `dblValorTotal` DOUBLE NULL,
   `intChavePagamento` INT NULL,
   PRIMARY KEY (`intChave`));
+
+
+CREATE TABLE `locadora`.`tbltipopagamento` (
+  `intChave` INT NOT NULL,
+  `strDescricao` VARCHAR(45) NULL,
+  PRIMARY KEY (`intChave`));
