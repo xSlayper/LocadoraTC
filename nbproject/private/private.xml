@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/listarCarros.xhtml</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/novoCarro.xhtml</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/menu.xhtml</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/src/java/Entity/entCarro.java</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/web/novoAluguel.xhtml</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/src/java/DataAcessLayer/Conexao.java</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/LocadoraTC/src/java/DataAcessLayer/daoCliente.java</file>
+        </group>
     </open-files>
 </project-private>
