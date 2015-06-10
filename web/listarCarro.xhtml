@@ -21,12 +21,6 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <h:dataTable value="#{CarroHdl.listaCarros}" var="objeto" class="table table-striped" >
-<!--                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="ID"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.intChave}"/>
-                                        </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="Marca"/>
@@ -51,12 +45,6 @@
                                             </f:facet>
                                             <h:outputText value="#{objeto.dblDiaria}"/>
                                         </h:column>
-<!--                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Placa"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.strPlaca}"/>
-                                        </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="Foto"/>
@@ -70,7 +58,7 @@
                                             <f:facet name="header">
                                                 <h:outputLabel value="Opções"/>
                                             </f:facet>
-                                            <h:commandButton value="Editar" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <h:commandButton value="Editar" action="editarCarro.xhtml" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <h:commandButton value="Apagar" class="btn btn-sm btn-danger" />
                                         </h:column>
                                     </h:dataTable>

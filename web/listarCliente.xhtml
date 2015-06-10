@@ -21,12 +21,6 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <h:dataTable value="#{ClienteHdl.listaCliente}" var="objeto" class="table table-striped" >
-<!--                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="ID"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.intChave}"/>
-                                        </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="Nome"/>
@@ -39,24 +33,12 @@
                                             </f:facet>
                                             <h:outputText value="#{objeto.strEmail}"/>
                                         </h:column>
-<!--                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="CPF"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.strCPF}"/>
-                                        </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="Telefone"/>
                                             </f:facet>
                                             <h:outputText value="#{objeto.strTelefone}"/>
                                         </h:column>
-<!--                                        <h:column>
-                                            <f:facet name="header">
-                                                <h:outputLabel value="Endereço"/>
-                                            </f:facet>
-                                            <h:outputText value="#{objeto.strEndereco}"/>
-                                        </h:column>-->
                                         <h:column>
                                             <f:facet name="header">
                                                 <h:outputLabel value="Dívida"/>
@@ -67,7 +49,7 @@
                                             <f:facet name="header">
                                                 <h:outputLabel value="Opções"/>
                                             </f:facet>
-                                            <h:commandButton value="Editar" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <h:commandButton value="Editar" action="editarCliente.xhtml" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <h:commandButton value="Apagar" class="btn btn-sm btn-danger" />
                                         </h:column>
                                     </h:dataTable>
