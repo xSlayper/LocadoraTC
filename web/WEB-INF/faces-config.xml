@@ -12,7 +12,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>sucesso</from-outcome>
-            <to-view-id>menu.xhtml</to-view-id>
+            <to-view-id>Menu.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -36,8 +36,8 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>sucesso</from-outcome>
-            <to-view-id>menu.xhtml</to-view-id>
-        </navigation-case>
+            <to-view-id>Menu.xhtml</to-view-id>
+        </navigation-case>        
         <navigation-case>
             <from-outcome>novoAlugel</from-outcome>
             <to-view-id>novoAluguel.xhtml</to-view-id>

@@ -21,37 +21,38 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <h:outputLabel value="Marca" /><h:message for="marca" class="mensagem" />
-                                        <h:inputText id="marca" value="trazer da lista" class="form-control" required="true" requiredMessage=" obrigatória" />                                            
+                                        <h:inputText id="marca" value="#{editCarroHdl.objCarro.strMarca}" class="form-control" required="true" requiredMessage=" obrigatória" />                                            
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
                                         <h:outputLabel value="Modelo" /><h:message for="modelo" class="mensagem" />
-                                        <h:inputText id="modelo" value="trazer da lista" class="form-control" required="true" requiredMessage=" obrigatório" />                                            
+                                        <h:inputText id="modelo" value="#{editCarroHdl.objCarro.strModelo}" class="form-control" required="true" requiredMessage=" obrigatório" />                                            
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
                                         <h:outputLabel value="Ano" /><h:message for="ano" class="mensagem" />
-                                        <h:inputText id="ano" value="trazer da lista" class="form-control" required="true" requiredMessage=" obrigatório" />                                            
+                                        <h:inputText id="ano" value="#{editCarroHdl.objCarro.intAno}" class="form-control" required="true" requiredMessage=" obrigatório" />                                            
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
                                         <h:outputLabel value="Diária" /><h:message for="diaria" class="mensagem" />
-                                        <h:inputText id="diaria" value="trazer da lista" class="form-control" required="true" requiredMessage=" obrigatório" />                                            
+                                        <h:inputText id="diaria" value="#{editCarroHdl.objCarro.dblDiaria}" class="form-control" required="true" requiredMessage=" obrigatório" />                                            
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
                                         <h:outputLabel value="Foto" />
-                                        <h:inputFile id="ifFoto" value="#{CarroHdl.file}" validator="#{CarroHdl.validateFile}"/>
-                                        <!--<img width='300' height='400' src="displayphoto?id=1"></img>-->                        
+                                        <img width='80' height='40' src="displayphoto?id=#{editCarroHdl.objCarro.intChave}"></img> 
+                                        <h:inputFile id="ifFoto" value="#{editCarroHdl.file}" validator="#{editCarroHdl.validateFile}"/>
+                                                               
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <h:commandButton value="Salvar" class="btn btn-primary btn-lg btn-block" />
+                                    <h:commandButton value="Salvar" action="#{editCarroHdl.executeEdit()}" class="btn btn-primary btn-lg btn-block" />
                                     <h:commandButton value="Cancelar" action="listarCarro.xhtml" class="btn btn-default btn-lg btn-block" immediate="true" />
                                 </div>
                             </div>               

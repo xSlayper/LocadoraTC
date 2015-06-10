@@ -49,15 +49,15 @@
                                             <f:facet name="header">
                                                 <h:outputLabel value="Opções"/>
                                             </f:facet>
-                                            <h:commandButton value="Editar" action="editarCliente.xhtml" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <h:commandButton value="Apagar" class="btn btn-sm btn-danger" />
+                                            <h:commandButton value="Editar" action="#{ClienteHdl.editCliente(objeto)}" class="btn btn-sm btn-info" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <h:commandButton value="Apagar" action="#{ClienteHdl.deleteCliente(objeto)}" class="btn btn-sm btn-danger" />
                                         </h:column>
                                     </h:dataTable>
                                 </div>                                
 
                                 <div class="row">
                                     <div class="col-sm-offset-4 col-sm-4">
-                                        <h:commandButton value="Voltar" action="menu.xhtml" class="btn btn-primary btn-lg btn-block" />
+                                        <h:commandButton value="Voltar" action="sucesso" class="btn btn-primary btn-lg btn-block" />
                                     </div>                                    
                                 </div>
                             </div>

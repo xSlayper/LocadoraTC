@@ -2,17 +2,14 @@ package myBeans;
 
 import DataAcessLayer.daoCarro;
 import Entity.entCarro;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -20,19 +17,24 @@ import javax.faces.validator.ValidatorException;
 import javax.servlet.http.Part;
 
 @ManagedBean(name = "CarroHdl")
-@RequestScoped
+@ViewScoped
 public class carroBean {
-    
+
     daoCarro dal = new daoCarro();
     private entCarro objCarro;
     private Part file;
-    private String fileContent;
+ 
+
+    @ManagedProperty(value = "#{editCarroBean}")
+    private editCarroBean editCarroBean;
 
     private List<entCarro> listaCarros;
+
     public carroBean() {
         objCarro = new entCarro();
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Gets n Sets">
     public entCarro getObjCarro() {
         return objCarro;
     }
@@ -57,29 +59,35 @@ public class carroBean {
         this.file = file;
     }
 
-    public String getFileContent() {
-        return fileContent;
+    public editCarroBean getEditCarroBean() {
+        return editCarroBean;
     }
 
-    public void setFileContent(String fileContent) {
-        this.fileContent = fileContent;
+    public void setEditCarroBean(editCarroBean editCarroBean) {
+        this.editCarroBean = editCarroBean;
     }
 
-    public String cadastrarCarro() {  
+    
+    // </editor-fold>
+    public String cadastrarCarro() {
         try {
-            this.objCarro.setIsFoto(file.getInputStream());
-            this.objCarro.setTamanhoFoto((int)file.getSize());
-            
+            if (file != null) {
+                System.out.println("aqui?");
+                this.objCarro.setIsFoto(file.getInputStream());
+                this.objCarro.setTamanhoFoto((int) file.getSize());
+            } else {
+                this.objCarro.setTamanhoFoto(0);
+            }
             dal.insertCarro(objCarro);
-            //fileContent = new Scanner(file.getInputStream()).useDelimiter("\\A").next();
         } catch (IOException e) {
             // Error handling
-        } 
+        }
         return "sucesso";
-    }   
+    }
 
     public void validateFile(FacesContext ctx, UIComponent comp, Object value) {
 
+        if (value != null) {
             List<FacesMessage> msgs = new ArrayList<FacesMessage>();
             Part file = (Part) value;
             if (file.getSize() > 1024 * 1024 * 8) {
@@ -91,13 +99,35 @@ public class carroBean {
             if (!msgs.isEmpty()) {
                 throw new ValidatorException(msgs);
             }
-   
+        }
     }
-    
-    public String listarCarros()
-    {
+
+    public String deleteCarro(Object obj) {
+        System.out.println("Entrei no deleteCar");
+        dal.deleteCarro(((entCarro) obj).getIntChave());
+        return "listarCarros";
+    }
+
+    public String listarCarros() {
         this.listaCarros = dal.getAllCarros();
-    return "listarCarros";
+        return "listarCarros";
+    }
+
+    public String editCarro(Object obj) {
+        entCarro objToEdit = ((entCarro) obj);
+        if (editCarroBean == null) {
+            editCarroBean = new editCarroBean();
+        }
+
+        editCarroBean.setObjCarro(objToEdit);
+        return "editarCarro.xhtml";
+    }
+
+    @PostConstruct
+    public void init() {
+        if (this.listaCarros == null) {
+            this.listaCarros = dal.getAllCarros();
+        }
     }
 
 }

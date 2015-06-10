@@ -34,18 +34,25 @@ public class daoCarro {
             while (rs.next()) {
                 objCarro.setIntChave(rs.getInt(1) + 1);
             }
-            System.out.println("Inserindo Cliente!");
 
             Conexao.conn.setAutoCommit(false);
 
             PreparedStatement ps = Conexao.conn.prepareStatement("INSERT INTO tblCarro (intChave, strModelo, strMarca, intAno, strPlaca, dblDiaria, btFoto) values(?,?,?,?,?,?,?)");
+            
             ps.setInt(1, objCarro.getIntChave());
             ps.setString(2, objCarro.getStrModelo());
             ps.setString(3, objCarro.getStrMarca());
             ps.setInt(4, objCarro.getIntAno());
             ps.setString(5, objCarro.getStrPlaca());
             ps.setDouble(6, objCarro.getDblDiaria());
+            if(objCarro.getTamanhoFoto() != 0)
+            {
             ps.setBinaryStream(7, objCarro.getIsFoto(), objCarro.getTamanhoFoto());
+            }
+            else
+            {
+              ps.setBinaryStream(7, null);  
+            }
             ps.executeUpdate();
 
             Conexao.conn.commit();
@@ -58,6 +65,43 @@ public class daoCarro {
 
     }
 
+    public void editCarro(entCarro objCarro) {
+        System.out.println("Cadastro de novo Carro!!");
+        try {
+            Conexao.Conectar();
+            System.out.println("Gerando intChave");
+            Statement stmt = Conexao.conn.createStatement();
+            Conexao.conn.setAutoCommit(false);
+
+            PreparedStatement ps = Conexao.conn.prepareStatement("UPDATE tblCarro SET strModelo = ?, strMarca = ?, intAno = ?, strPlaca = ?, dblDiaria = ?, btFoto = ? WHERE intChave = ?");
+            
+            
+            ps.setString(1, objCarro.getStrModelo());
+            ps.setString(2, objCarro.getStrMarca());
+            ps.setInt(3, objCarro.getIntAno());
+            ps.setString(4, objCarro.getStrPlaca());
+            ps.setDouble(5, objCarro.getDblDiaria());
+            if(objCarro.getTamanhoFoto() != 0)
+            {
+            ps.setBinaryStream(6, objCarro.getIsFoto(), objCarro.getTamanhoFoto());
+            }
+            else
+            {
+              ps.setBinaryStream(6, null);  
+            }
+            ps.setInt(7, objCarro.getIntChave());
+            ps.executeUpdate();
+
+            Conexao.conn.commit();
+            Conexao.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+        }
+
+    }
+    
     public entCarro getCarro(int idCarro) {
         System.out.println("get Carro!!");
         entCarro objCarro = new entCarro();
@@ -106,6 +150,8 @@ public class daoCarro {
                 objCarro.setStrPlaca(rs.getString("strPlaca"));
                 objCarro.setDblDiaria(rs.getDouble("dblDiaria"));
                 objCarro.setBlbFoto(rs.getBlob("btFoto"));
+//                objCarro.setIsFoto(rs.getBinaryStream("btFoto"));
+//                objCarro.setTamanhoFoto((int)objCarro.getBlbFoto().length());
                 listaCarros.add(objCarro);
             }
             System.out.println("Preenchi a lista!!");
@@ -116,5 +162,21 @@ public class daoCarro {
 
         }
         return listaCarros;
+    }
+    
+    public void deleteCarro(int intChave)
+    {
+         try {
+            Conexao.Conectar();
+            System.out.println("Apagando chave: " + intChave);
+            Statement stmt = Conexao.conn.createStatement();
+            stmt.execute("DELETE FROM tblCarro WHERE intChave = " + intChave);
+
+            Conexao.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+        }
     }
 }

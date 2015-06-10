@@ -43,6 +43,29 @@ public class daoCliente {
     }
     
     
+        public void editCliente(entCliente objClient)
+    {
+        System.out.println("edição de Cliente!!");
+        try {
+            Conexao.Conectar();
+            Statement stmt = Conexao.conn.createStatement();
+
+            System.out.println("Editando Cliente!");
+            String strQuery = "UPDATE tblcliente SET strNome = '%s', strCPF = '%s', strEndereco = '%s', strTelefone = '%s', strEmail = '%s', dblDivida = '%s' WHERE intChave = %d ";
+                       
+            stmt.execute(String.format(strQuery, objClient.getStrNome(), objClient.getStrCPF(), objClient.getStrEndereco(), objClient.getStrTelefone(), objClient.getStrEmail(), Double.toString(objClient.getDblDivida()).replace(",", ".s"), objClient.getIntChave()));
+
+            Conexao.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            
+        }
+        
+    }
+    
      public List<entCliente> getClientes()
     {
             List<entCliente> listaClientes = new ArrayList<>();
@@ -76,5 +99,21 @@ System.out.println("Preenchi a lista!!");
             
         }
         return listaClientes;
+    }
+     
+         public void deleteCliente(int intChave)
+    {
+         try {
+            Conexao.Conectar();
+            System.out.println("Apagando chave: " + intChave);
+            Statement stmt = Conexao.conn.createStatement();
+            stmt.execute("DELETE FROM tblCliente WHERE intChave = " + intChave);
+
+            Conexao.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+        }
     }
 }
