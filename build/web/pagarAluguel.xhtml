@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="modelo.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="top">
+        <h:commandButton value="Logout" action="#{autenticacao.logoff()}" class="btn btn-default btn-lg" style="float: right; margin-right: 2%;" />
+        <h1>Pagar Aluguel</h1>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">            
+                            <div class="container-fluid">
+                                <h:panelGroup class="row">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Método de Pagamento" /><h:message for="cliente" class="mensagem" />
+                                        <h:selectOneMenu id="cliente" value="#{pagamentoHdl.objPagamento.intChaveTipoPagamento}" class="form-control" required="true" requiredMessage=" obrigatório">
+                                            <f:selectItem id="item1" itemLabel="Selecione..." itemValue="0" />
+                                            <f:selectItem id="item2" itemLabel="À Vista" itemValue="1" />
+                                            <f:selectItem id="item3" itemLabel="Débito" itemValue="2" />
+                                            <f:selectItem id="item4" itemLabel="Crédito" itemValue="3" />
+                                            <f:selectItem id="item5" itemLabel="Cheque" itemValue="4" />                          
+                                            <f:ajax listener="#{pagamentoHdl.setPagamentoType}" render="@form"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup class="row" id="pnlCheque" rendered="#{pagamentoHdl.blnCheque}">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Prazo Cheque" /><h:message for="dias" class="mensagem" />
+                                        <h:inputText id="dias"  value="#{pagamentoHdl.objPagamento.intChequeDias}"  class="form-control" required="true" requiredMessage=" obrigatório" >                            
+                                        </h:inputText>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup class="row"  rendered="#{pagamentoHdl.blnCartao}">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Parcelas Cartão"/>
+                                        <h:inputText id="valor" class="form-control" value="#{pagamentoHdl.objPagamento.intCartaoParcelas}" />                                                                                            
+                                    </div>
+                                </h:panelGroup>
+
+                                <h:panelGroup class="row">
+                                    <h:commandButton value="Salvar" action="#{pagamentoHdl.efetuarPagamento()}" class="btn btn-primary btn-lg btn-block" >
+<!--                                    <f:ajax execute="@this"/>-->
+                                    </h:commandButton>
+                                    <h:commandButton value="Cancelar" action="listarAluguel" class="btn btn-default btn-lg btn-block" immediate="true" />
+                                </h:panelGroup>
+                            </div>               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
