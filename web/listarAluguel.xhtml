@@ -61,7 +61,7 @@
                                             <f:facet name="header">
                                                 <h:outputLabel value="Opções"/>
                                             </f:facet>
-                                            <h:commandButton value="Pagar" class="btn btn-sm btn-success" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <h:commandButton value="Pagar" action="#{aluguelCarroHdl.fazerPagamento(objeto)}" class="btn btn-sm btn-success" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <h:commandButton value="Gerar Nota" class="btn btn-sm btn-info" />
                                         </h:column>
                                     </h:dataTable>

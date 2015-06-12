@@ -11,9 +11,11 @@ import DataAcessLayer.daoCliente;
 import Entity.entAluguel;
 import Entity.entCarro;
 import Entity.entCliente;
+import Entity.entPagamento;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -34,13 +36,23 @@ public class aluguelBean {
     private List<entCliente> listaClientes;
     static entCliente ClienteSelected;
 
+    private List<entAluguel> listaAlugueis;
+    
     private double dblValorAluguel;
     private int intDias;
     private int intChaveCarro;
     private int intChavePessoa;
-    
-    
-    private List<entAluguel> listaAlugueis;
+
+    @ManagedProperty(value = "#{pagamentoBean}")
+    private pagamentoBean pgmtoBean;
+
+    public pagamentoBean getPgmtoBean() {
+        return pgmtoBean;
+    }
+
+    public void setPgmtoBean(pagamentoBean pgmtoBean) {
+        this.pgmtoBean = pgmtoBean;
+    }
 
     public List<entAluguel> getListaAlugueis() {
         return listaAlugueis;
@@ -50,8 +62,6 @@ public class aluguelBean {
         this.listaAlugueis = listaAlugueis;
     }
 
-
-    
     public int getIntChaveCarro() {
         return intChaveCarro;
     }
@@ -104,7 +114,9 @@ public class aluguelBean {
                 break;
             }
         }
-        System.out.println("Passei pelo postCliente: " + ClienteSelected.getIntChave());
+
+        System.out.println("Passou pelo postCliente!!!!");
+
     }
 
     public void postCarro(AjaxBehaviorEvent event) {
@@ -118,7 +130,7 @@ public class aluguelBean {
     }
 
     public aluguelBean() {
-        
+
     }
 
     public List<entCarro> getListaCarros() {
@@ -160,19 +172,20 @@ public class aluguelBean {
     public String loadAlguel() {
         return "novoAlugel";
     }
-    
-        @PostConstruct
+
+    @PostConstruct
     public void init() {
         listaCarros = dalCarro.getAllCarros();
         listaClientes = dalCli.getClientes();
         CarroSelected = listaCarros.get(0);
         ClienteSelected = listaClientes.get(0);
+        intChavePessoa = listaClientes.get(0).getIntChave();
+        intChaveCarro = listaCarros.get(0).getIntChave();
         listaAlugueis = dalAluguel.getAlugueis();
-        
+
     }
-    
-    public String registrarAluguel()
-    {
+
+    public String registrarAluguel() {
         entAluguel objAluguel = new entAluguel();
         objAluguel.setIntChaveCarro(intChaveCarro);
         objAluguel.setIntChaveCliente(intChavePessoa);
@@ -181,5 +194,19 @@ public class aluguelBean {
         objAluguel.setIntChavePagamento(0);
         dalAluguel.insertAluguel(objAluguel);
         return "sucesso";
+    }
+
+    public String fazerPagamento(Object obj) {
+        entAluguel objToPay = (entAluguel)obj;
+        entPagamento objPayment = new entPagamento();
+        
+        objPayment.setIntChaveAluguel(objToPay.getIntChave());
+       
+        if(pgmtoBean == null)
+        {
+            pgmtoBean = new pagamentoBean();
+        }
+        pgmtoBean.setObjPagamento(objPayment);
+        return "pagarAluguel";
     }
 }

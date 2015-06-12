@@ -90,13 +90,10 @@ public class daoAluguel {
                 objAluguel.setIntDias(rs.getInt("intDias"));
                 objAluguel.setDblValorTotal(rs.getDouble("dblValorTotal"));
                 objAluguel.setIntChavePagamento(rs.getInt("intChavePagamento"));
-                
-                if(objAluguel.getIntChavePagamento() == 0)
-                {
+
+                if (objAluguel.getIntChavePagamento() == 0) {
                     objAluguel.setStrPago("Não");
-                }
-                else
-                {
+                } else {
                     objAluguel.setStrPago("Sim");
                 }
                 listaAluguels.add(objAluguel);
@@ -109,5 +106,81 @@ public class daoAluguel {
 
         }
         return listaAluguels;
+    }
+
+    public entAluguel getAluguel(int intChave) {
+        entAluguel objAluguel = new entAluguel();
+        try {
+            Conexao.Conectar();
+            Statement stmt = Conexao.conn.createStatement();
+            stmt.executeQuery(" SELECT"
+                    + " al.intChave, al.intChaveCliente, cl.strNome, al.intChaveCarro,"
+                    + " cr.strMarca, cr.strModelo, al.intDias, al.dblValorTotal, al.intChavePagamento FROM"
+                    + " tblAluguel al,"
+                    + " tblCarro cr,"
+                    + " tblCliente cl"
+                    + " WHERE"
+                    + " al.intChaveCarro = cr.intChave"
+                    + " AND"
+                    + " al.intChaveCliente = cl.intChave"
+                    + " AND al.intChave = " + intChave);
+            ResultSet rs = stmt.getResultSet();
+            System.out.println("Coletei resultSet!");            
+            
+            while (rs.next()) {
+               
+                objAluguel.setIntChave(rs.getInt("intChave"));
+                objAluguel.setIntChaveCliente(rs.getInt("intChaveCliente"));
+                objAluguel.setStrNomeCliente(rs.getString("strNome"));
+                objAluguel.setIntChaveCarro(rs.getInt("intChaveCarro"));
+                objAluguel.setStrMarcaModeloCarro(rs.getString("strMarca") + " - " + rs.getString("strModelo"));
+                objAluguel.setIntDias(rs.getInt("intDias"));
+                objAluguel.setDblValorTotal(rs.getDouble("dblValorTotal"));
+                objAluguel.setIntChavePagamento(rs.getInt("intChavePagamento"));
+
+                if (objAluguel.getIntChavePagamento() == 0) {
+                    objAluguel.setStrPago("Não");
+                } else {
+                    objAluguel.setStrPago("Sim");
+                }
+                
+            }
+            System.out.println("Preenchi a lista!!");
+            Conexao.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(daoAluguel.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+        }
+        return objAluguel;
+    }
+    
+    public void updateAluguel(entAluguel objAluguel) {
+     
+        try {
+            Conexao.Conectar();
+         
+            Conexao.conn.setAutoCommit(false);
+
+            PreparedStatement ps = Conexao.conn.prepareStatement("UPDATE tblAluguel SET intChaveCliente = ?, intChaveCarro = ?, intDias = ?, dblValorTotal = ?, intChavePagamento = ? WHERE intChave = ?");
+
+            
+            ps.setInt(1, objAluguel.getIntChaveCliente());
+            ps.setInt(2, objAluguel.getIntChaveCarro());
+            ps.setInt(3, objAluguel.getIntDias());
+            ps.setDouble(4, objAluguel.getDblValorTotal());
+            ps.setInt(5, objAluguel.getIntChavePagamento());
+            ps.setInt(6, objAluguel.getIntChave());
+            ps.executeUpdate();
+            Conexao.conn.commit();
+            Conexao.conn.close();
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(daoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+        }
+
     }
 }

@@ -46,3 +46,12 @@ CREATE TABLE `locadora`.`tbltipopagamento` (
   `intChave` INT NOT NULL,
   `strDescricao` VARCHAR(45) NULL,
   PRIMARY KEY (`intChave`));
+
+
+CREATE TABLE `locadora`.`tblpagamento` (
+  `intChave` INT NOT NULL,
+  `intChaveTipoPagamento` INT NULL,
+  `intChaveAluguel` INT NULL,
+  `intChequeDias` INT NULL,
+  `intCartaoParcelas` INT NULL,
+  PRIMARY KEY (`intChave`));

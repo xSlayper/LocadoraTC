@@ -35,6 +35,10 @@
             <to-view-id>listarAluguel.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-outcome>pagarAluguel</from-outcome>
+            <to-view-id>pagarAluguel.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>sucesso</from-outcome>
             <to-view-id>Menu.xhtml</to-view-id>
         </navigation-case>        
